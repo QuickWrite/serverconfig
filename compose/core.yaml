@@ -15,5 +15,7 @@ services:
       - OVERLEAF_SUBDOMAIN=${OVERLEAF_SUBDOMAIN}
     volumes:
       - ../config/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - /srv/caddy/certs:/data/caddy/certs:ro
+      - /srv/caddy:/data/caddy
       - /var/log/caddy:/var/log/caddy
+    networks:
+      - net

@@ -82,6 +82,8 @@ fi
 log "Creating /srv/ directory structure..."
 declare -a SRV_DIRS=(
     "/srv/caddy"
+    "/srv/caddy/data"
+    "/srv/caddy/config"
     "/srv/overleaf"
     "/srv/overleaf/overleaf"
     "/srv/overleaf/mongo"
@@ -104,6 +106,8 @@ declare -a VAR_DIRS=(
 for dir in "${VAR_DIRS[@]}"; do
     mkdir -p "$dir"
 done
+chown -R "$SERVICE_USER":"$SERVICE_USER" /var/
+
 log "Directory structure created under /var/"
 
 log "Configuring firewall (UFW)..."
