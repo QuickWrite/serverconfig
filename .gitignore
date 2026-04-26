@@ -1,0 +1,20 @@
+# Environment
+.env
+secrets/*
+!secrets/.gitkeep
+!secrets/README.md
+
+# Runtime data
+data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Docker
+docker-compose.override.yml
