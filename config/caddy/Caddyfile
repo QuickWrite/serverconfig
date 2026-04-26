@@ -1,0 +1,31 @@
+{
+    # Global options (optional)
+    email admin@${BASE_DOMAIN}
+    storage file_system {
+        root /srv/caddy/certs
+    }
+    log {
+        output file /var/log/caddy/access.log {
+            roll_size 10mb
+            roll_keep 7
+            roll_keep_for 720h
+        }
+    }
+}
+
+# -------------------------------------------------
+# Overleaf
+# -------------------------------------------------
+${OVERLEAF_SUBDOMAIN}.${BASE_DOMAIN} {
+    encode gzip
+    reverse_proxy localhost:3000 {
+        header_up Host {http.request.host}
+        header_up X-Real-IP {http.request.remote.host}
+        header_up X-Forwarded-For {http.request.remote.host}
+        header_up X-Forwarded-Proto {http.request.scheme}
+        transport http {
+            keepalive 10s
+        }
+    }
+    request_body max_size 200MiB
+}

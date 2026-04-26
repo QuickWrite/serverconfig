@@ -81,7 +81,11 @@ fi
 # create dir structure
 log "Creating /srv/ directory structure..."
 declare -a SRV_DIRS=(
-    
+    "/srv/caddy"
+    "/srv/overleaf"
+    "/srv/overleaf/overleaf"
+    "/srv/overleaf/mongo"
+    "/srv/overleaf/redis"
 )
 
 for dir in "${SRV_DIRS[@]}"; do
@@ -91,6 +95,16 @@ done
 chown -R "$SERVICE_USER":"$SERVICE_USER" /srv/
 
 log "Directory structure created under /srv/"
+
+log "Creating /var/ directory structure..."
+declare -a VAR_DIRS=(
+    "/var/log/caddy"
+)
+
+for dir in "${VAR_DIRS[@]}"; do
+    mkdir -p "$dir"
+done
+log "Directory structure created under /var/"
 
 log "Configuring firewall (UFW)..."
 ufw default deny incoming

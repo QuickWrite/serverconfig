@@ -1,0 +1,19 @@
+networks:
+  net:
+    external: true
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless_stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - BASE_DOMAIN=${DOMAIN}
+      - OVERLEAF_SUBDOMAIN=${OVERLEAF_SUBDOMAIN}
+    volumes:
+      - ../config/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /srv/caddy/certs:/data/caddy/certs:ro
+      - /var/log/caddy:/var/log/caddy
