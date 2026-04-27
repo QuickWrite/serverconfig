@@ -26,7 +26,7 @@ services:
 
     environment:
       OVERLEAF_APP_NAME: Overleaf Community Edition
-      OVERLEAF_SITE_URL: ${OVERLEAF_SUBDOMAIN}.${DOMAIN}
+      OVERLEAF_SITE_URL: https://${OVERLEAF_SUBDOMAIN}.${DOMAIN}
 
       OVERLEAF_MONGO_URL: mongodb://mongo:27017/sharelatex?replicaSet=overleaf
 
