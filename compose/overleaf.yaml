@@ -4,7 +4,7 @@ networks:
 
 services:
   sharelatex:
-    image: sharelatex/sharelatex
+    image: "ghcr.io/quickwrite/sharelatex-extended:latest"
     container_name: sharelatex
     restart: unless-stopped
 
