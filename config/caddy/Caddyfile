@@ -9,6 +9,6 @@
 # Static files
 # -------------------------------------------------
 {$STATIC_SUBDOMAIN}.{$BASE_DOMAIN} {
-    root var/www
+    root /var/www
     file_server
 }

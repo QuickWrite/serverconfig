@@ -18,5 +18,6 @@ services:
       - ../config/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - /srv/caddy:/data/caddy
       - /var/log/caddy:/var/log/caddy
+      - /var/www:/var/www
     networks:
       - net
