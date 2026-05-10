@@ -4,3 +4,11 @@
 {$OVERLEAF_SUBDOMAIN}.{$BASE_DOMAIN} {
     reverse_proxy sharelatex:80
 }
+
+# -------------------------------------------------
+# Static files
+# -------------------------------------------------
+{$STATIC_SUBDOMAIN}.{$BASE_DOMAIN} {
+    root var/www
+    file_server
+}

@@ -13,6 +13,7 @@ services:
     environment:
       - BASE_DOMAIN=${DOMAIN}
       - OVERLEAF_SUBDOMAIN=${OVERLEAF_SUBDOMAIN}
+      - STATIC_SUBDOMAIN=${STATIC_SUBDOMAIN}
     volumes:
       - ../config/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - /srv/caddy:/data/caddy

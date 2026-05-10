@@ -101,6 +101,7 @@ log "Directory structure created under /srv/"
 log "Creating /var/ directory structure..."
 declare -a VAR_DIRS=(
     "/var/log/caddy"
+    "var/www"
 )
 
 for dir in "${VAR_DIRS[@]}"; do
