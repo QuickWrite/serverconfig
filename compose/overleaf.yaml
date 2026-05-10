@@ -46,7 +46,7 @@ services:
     container_name: mongo
     restart: unless-stopped
 
-    command: ["--replSet", "overleaf", "--bind_ip_all"]
+    command: ["--replSet", "overleaf", "--bind_ip_all", "--quiet"]
 
     volumes:
       - /srv/overleaf/mongo:/data/db
@@ -57,10 +57,17 @@ services:
           "CMD-SHELL",
           "mongosh --quiet --eval \"db.adminCommand('ping').ok\" | grep 1"
         ]
-      interval: 5s
+      interval: 60s
       timeout: 5s
       retries: 20
       start_period: 20s
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
     networks:
       - net
 
