@@ -31,6 +31,10 @@ pull: ## Pull latest images for all services
 logs-%: ## Tail logs for a specific service (e.g., make logs-overleaf)
 	$(COMPOSE_CMD) logs -f --tail=100 $*
 
+
+backup: ## Run backup script
+	@bash scripts/backup.sh
+
 bootstrap: ## Initial server setup (run once)
 	@sudo bash scripts/bootstrap.sh
 
