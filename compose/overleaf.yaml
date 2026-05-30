@@ -37,6 +37,8 @@ services:
       ENABLE_CONVERSIONS: "true"
       EMAIL_CONFIRMATION_DISABLED: "true"
 
+      OVERLEAF_HEADER_IMAGE_URL: https://${STATIC_SUBDOMAIN}.${DOMAIN}/services/overleaf/logo/instance-header.png
+
       SANDBOXED_COMPILES: "false"
     networks:
       - net
