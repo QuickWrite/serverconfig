@@ -12,25 +12,32 @@ COMPOSE_CMD   := $(COMPOSE) --env-file $(ENV_FILE) $(COMPOSE_FILES) -p $(PROJECT
 up: ## Start all services
 	$(COMPOSE_CMD) up -d
 
+up-%:
+	$(COMPOSE_CMD) up $* -d
+
 down: ## Stop all services
 	$(COMPOSE_CMD) down
+
+down-%:
+	$(COMPOSE_CMD) down $* -d
 
 restart: ## Restart all services
 	$(COMPOSE_CMD) restart
 
+restart-%:
+	$(COMPOSE_CMD) restart $*
+
 logs: ## Tail logs (all services)
 	$(COMPOSE_CMD) logs -f --tail=100
+
+logs-%: ## Tail logs for a specific service (e.g., make logs-overleaf)
+	$(COMPOSE_CMD) logs -f --tail=100 $*
 
 ps: ## Show running containers
 	$(COMPOSE_CMD) ps
 
 pull: ## Pull latest images for all services
 	$(COMPOSE_CMD) pull
-
-
-logs-%: ## Tail logs for a specific service (e.g., make logs-overleaf)
-	$(COMPOSE_CMD) logs -f --tail=100 $*
-
 
 backup: ## Run backup script
 	@bash scripts/backup.sh
@@ -41,6 +48,9 @@ bootstrap: ## Initial server setup (run once)
 update: ## Pull latest images and recreate changed containers
 	$(COMPOSE_CMD) pull
 	$(COMPOSE_CMD) up -d --remove-orphans
+
+volumes:
+	$(COMPOSE_CMD) config --volumes
 
 prune: ## Clean up unused Docker resources
 	docker system prune -af --volumes && make net
